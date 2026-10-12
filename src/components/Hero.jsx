@@ -1,33 +1,30 @@
 function Hero() {
   return (
-    <section className="hero-section pt-32 pb-20 text-center">
-      <div className="max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--accent-glow)] text-[var(--accent-light)] text-sm mb-8">
-          <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse"></span>
+    <section style={{ paddingTop: 200, paddingBottom: 120, textAlign: 'center' }}>
+      <div style={{ maxWidth: 800, margin: '0 auto' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, border: '1px solid #27272a', background: 'rgba(99,102,241,0.1)', color: '#818cf8', fontSize: 14, marginBottom: 32 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 2s infinite' }}></span>
           开源 · 终端原生 · AI 驱动
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          你的终端里<br />
-          坐着一位<span className="gradient-text">AI 工程师</span>
+        <h1 style={{ fontSize: 'clamp(36px, 7vw, 72px)', fontWeight: 'bold', marginBottom: 24, lineHeight: 1.1 }}>
+          你的终端里<br />坐着一位<span className="gradient-text"> AI 工程师</span>
         </h1>
-        <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
-          <strong>opencode</strong> 是一款开源的 AI 编码助手，直接在终端中运行。
-          它能理解你的代码库、管理多文件编辑、执行测试、甚至帮你修复 bug —— 一切都在你熟悉的命令行中完成。
+        <p style={{ fontSize: 20, color: '#a1a1aa', maxWidth: 600, margin: '0 auto 40px', lineHeight: 1.8 }}>
+          <strong style={{ color: '#e4e4e7' }}>opencode</strong> 是一款开源的 AI 编码助手，直接在终端中运行。
+          它能理解你的代码库、管理多文件编辑、执行测试、甚至帮你修复 bug。
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#install" className="btn-primary text-lg px-8 py-4">
-            <span>⚡</span> 立即开始
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="#install" className="btn-primary" style={{ padding: '14px 32px', fontSize: 18 }}>
+            ⚡ 立即开始
           </a>
-          <a href="https://github.com/nydus/opencode" target="_blank" className="btn-secondary text-lg px-8 py-4">
-            <span>⭐</span> GitHub 仓库
+          <a href="https://github.com/nydus/opencode" target="_blank" className="btn-secondary" style={{ padding: '14px 32px', fontSize: 18 }}>
+            ⭐ GitHub 仓库
           </a>
         </div>
-        <div className="mt-12 text-sm text-[var(--text-muted)]">
-          <p>支持 <strong>GPT-4</strong> · <strong>Claude</strong> · <strong>o3</strong> · <strong>DeepSeek</strong> · <strong>本地模型</strong></p>
+        <div style={{ marginTop: 48, fontSize: 14, color: '#a1a1aa' }}>
+          支持 <strong>GPT-4</strong> · <strong>Claude</strong> · <strong>o3</strong> · <strong>DeepSeek</strong> · <strong>本地模型</strong>
         </div>
       </div>
-      {/* Decorative glow */}
-      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent)] rounded-full opacity-[0.03] blur-[120px] pointer-events-none"></div>
     </section>
   )
 }

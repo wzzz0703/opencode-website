@@ -1,86 +1,75 @@
 import { useState } from 'react'
 
 const demos = [
-  {
-    title: '代码生成',
-    prompt: '创建一个用户认证模块',
-    output: `⟩ opencode "创建一个JWT认证中间件"
+  { title: '代码生成', code: `$ opencode "创建一个JWT认证中间件"
 
-┌  Analyzing project structure...
-├  Found Express.js framework
-├  Detected passport-jwt dependency
-└  Generating auth middleware...
+✓ Analyzing project structure...
+✓ Found Express.js framework
+✓ Detected passport-jwt dependency
+✓ Generating auth middleware...
 
-✓ Created src/middleware/auth.js
-✓ Created src/routes/auth.js
-✓ Updated src/app.js
-✓ Generated unit tests
+Created: src/middleware/auth.js
+Created: src/routes/auth.js
+Updated: src/app.js
+Generated: unit tests
 
-  3 files modified, 2 files created`
-  },
-  {
-    title: 'Bug 修复',
-    prompt: '修复内存泄漏问题',
-    output: `⟩ opencode "修复事件监听器内存泄漏"
+3 files modified, 2 files created` },
+  { title: 'Bug 修复', code: `$ opencode "修复事件监听器内存泄漏"
 
-┌  Analyzing error trace...
-├  Found 3 unremoved event listeners
-├  Located in src/events/manager.js
-└  Applying fix...
+✓ Analyzing error trace...
+✓ Found 3 unremoved event listeners
+✓ Located in src/events/manager.js
+✓ Applying fix...
 
-✓ Added cleanup in onDestroy lifecycle
-✓ Added cleanup in componentUnmount
-✓ Verified with memory profiler
+Added cleanup in onDestroy lifecycle
+Added cleanup in componentUnmount
+Verified with memory profiler
 
-  Memory leak resolved · 0 regressions`
-  },
-  {
-    title: '代码重构',
-    prompt: '重构遗留代码',
-    output: `⟩ opencode "重构数据库连接池管理"
+Memory leak resolved · 0 regressions` },
+  { title: '代码重构', code: `$ opencode "重构数据库连接池管理"
 
-┌  Analyzing code complexity...
-├  Cyclomatic complexity: 23 → 8
-├  Extracting connection management
-├  Adding proper error handling
-└  Running test suite...
+✓ Analyzing code complexity...
+Cyclomatic complexity: 23 → 8
+Extracting connection management
+Adding proper error handling
+Running test suite...
 
-✓ All 47 tests passing
-✓ Response time improved 34%
-✓ Added connection timeout handling
+All 47 tests passing
+Response time improved 34%
+Added connection timeout handling
 
-  Refactored 2 files · Complexity -65%`
-  }
+Refactored 2 files · Complexity -65%` }
 ]
 
 function CodeDemo() {
   const [active, setActive] = useState(0)
-
   return (
     <section id="demo">
-      <h2 className="section-title text-center">看看它如何<span className="gradient-text">工作</span></h2>
-      <p className="section-subtitle text-center">从需求描述到代码落地，一条命令搞定</p>
-      <div className="max-w-4xl mx-auto">
-        <div className="flex gap-3 mb-6 justify-center flex-wrap">
+      <h2 className="section-title" style={{ textAlign: 'center' }}>看看它如何<span className="gradient-text">工作</span></h2>
+      <p style={{ fontSize: 18, color: '#a1a1aa', textAlign: 'center', maxWidth: 600, margin: '0 auto 40px' }}>
+        从需求描述到代码落地，一条命令搞定
+      </p>
+      <div style={{ maxWidth: 700, margin: '0 auto' }}>
+        <div style={{ display: 'flex', gap: 12, marginBottom: 24, justifyContent: 'center', flexWrap: 'wrap' }}>
           {demos.map((d, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${active === i ? 'bg-[var(--accent)] text-white' : 'bg-[var(--bg-card)] text-[var(--text-muted)] border border-[var(--border)] hover:border-[var(--accent)]'}`}
-            >
-              {d.title}
-            </button>
+            <button key={i} onClick={() => setActive(i)} style={{
+              padding: '10px 20px', borderRadius: 8, fontSize: 14, fontWeight: 500, cursor: 'pointer',
+              background: active === i ? '#6366f1' : '#1a1a25',
+              color: active === i ? 'white' : '#a1a1aa',
+              border: active === i ? '1px solid #6366f1' : '1px solid #27272a',
+              transition: 'all 0.2s'
+            }}>{d.title}</button>
           ))}
         </div>
-        <div className="code-block glow">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-3 h-3 rounded-full bg-red-500"></span>
-            <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
-            <span className="ml-2 text-xs text-[var(--text-muted)]">terminal</span>
+        <div className="code-block" style={{ boxShadow: '0 0 40px rgba(99,102,241,0.1)' }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+            <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ef4444' }}></span>
+            <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#eab308' }}></span>
+            <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#22c55e' }}></span>
+            <span style={{ marginLeft: 12, fontSize: 12, color: '#a1a1aa' }}>terminal</span>
           </div>
-          <pre className="text-left whitespace-pre-wrap font-mono text-sm">
-            <code dangerouslySetInnerHTML={{ __html: demos[active].output.replace(/</g, '&lt;').replace(/>/g, '&gt;') }} />
+          <pre style={{ margin: 0, textAlign: 'left', whiteSpace: 'pre-wrap', fontSize: 14, lineHeight: 1.8 }}>
+            <code style={{ color: '#e4e4e7' }}>{demos[active].code}</code>
           </pre>
         </div>
       </div>

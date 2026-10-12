@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -18,29 +17,31 @@ function Navbar() {
     { label: '生态', href: '#ecosystem' },
   ]
 
+  const navStyle = {
+    position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, height: 64,
+    background: scrolled ? 'rgba(10,10,15,0.9)' : 'transparent',
+    backdropFilter: scrolled ? 'blur(20px)' : 'none',
+    borderBottom: scrolled ? '1px solid #27272a' : 'none',
+    transition: 'all 0.3s',
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    maxWidth: 1200, margin: '0 auto', padding: '0 24px', width: '100%'
+  }
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)]' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-xl font-bold text-[var(--text-heading)]">
-          <span className="text-2l">⟩</span> opencode
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          {links.map(l => (
-            <a key={l.href} href={l.href} className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-light)] transition-colors">{l.label}</a>
-          ))}
-          <a href="https://github.com/nydus/opencode" target="_blank" className="btn-primary text-sm px-5 py-2">
-            GitHub
+    <nav style={navStyle}>
+      <a href="#" style={{ fontSize: 20, fontWeight: 'bold', color: '#fafafa', textDecoration: 'none' }}>
+        <span style={{ color: '#6366f1' }}>⟩</span> opencode
+      </a>
+      <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+        {links.map(l => (
+          <a key={l.href} href={l.href} className="nav-link" style={{ fontSize: 14, color: '#a1a1aa', textDecoration: 'none' }}>
+            {l.label}
           </a>
-        </div>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-[var(--text)] text-2xl">&≡;</button>
+        ))}
+        <a href="https://github.com/nydus/opencode" target="_blank" className="btn-primary" style={{ padding: '8px 20px', fontSize: 14 }}>
+          GitHub
+        </a>
       </div>
-      {mobileOpen && (
-        <div className="md:hidden bg-[var(--bg-elevated)] border-b border-[var(--border)] px-6 py-4">
-          {links.map(l => (
-            <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block py-2 text-[var(--text-muted)] hover:text-[var(--accent-light)]">{l.label}</a>
-          ))}
-        </div>
-      )}
     </nav>
   )
 }
